@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+*.rpyb
+*.save
+game/saves/navigation.json
+game/saves/persistent
+*.rpyc
+*.rpymc
+log.txt
