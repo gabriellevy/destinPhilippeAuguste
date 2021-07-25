@@ -1,6 +1,7 @@
 ﻿# Persos
 define narrator = Character(color="#fafad8", what_italic=True)
-define cl = Character('Philippe', color="#80002a")
+define phi = Character('Philippe', color="#80002a")
+define lVIII = Character('Louis VII', color="#0040ff")
 
 # Musiques
 define audio.epique_principale = "musique/epique_principale.ogg"
