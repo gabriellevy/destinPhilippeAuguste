@@ -1527,3 +1527,72 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 600
+
+transform fade_move_with_pars(delay, x, y, move_x, move_y):
+    pos (x, y)
+    alpha 1.0
+    parallel:
+        alpha 1.0
+        linear delay alpha 0.3
+    parallel:
+        pos (x, y)
+        linear delay pos (move_x, move_y)
+    pause delay
+
+screen fading_text(text, delay, x, y, move_x, move_y, *args, **kwargs):
+    add Text(text, *args, **kwargs) at fade_move_with_pars(delay, x, y, move_x, move_y)
+
+screen valeurs_traits():
+    tag interface_personnage
+    $ descriptionTrait = situation_.DescriptionTraits(traits_)
+    $ descriptionBlessures = situation_.DescriptionBlessuresEtMaladies(blessures_, maladies_)
+    $ affAge = situation_.AffichageAge()
+    $ affDate = situation_.AffichageDate()
+    $ strMetier = situation_.AffichageMetier()
+    # $ strQuartier = situation_.AffichageQuartier()
+    $ patronyme = situation_.AffichagePatronyme()
+    $ strRichesse = situation_.AffichageRichesse()
+    $ strPossessions = situation_.AffichagePossessions()
+    $ adressePortrait = situation_.DeterminerPortrait()
+    $ strAffichagePortraitPere = situation_.AffichagePortraitPere()
+    $ strAffichagePere = situation_.AffichagePere()
+    $ strAffichagePortraitMere = situation_.AffichagePortraitMere()
+    $ strAffichageMere = situation_.AffichageMere()
+    $ strArmee = situation_.AffichageArmee()
+    $ tableauAffichageAmoureuses = situation_.AffichageAmoureuses()
+    frame:
+        xpos 5 ypos 5
+        vbox:
+            textbutton _("Description suivante"):
+                action Function(InterfaceSuivante)
+            if interfaceMode_ == 0: # résumé, portrait, nom, age, blessures...
+                add "[adressePortrait]"
+                text _(u"[patronyme]")
+                text _(u"[affAge]")
+                text _(u"[descriptionBlessures]")
+                text _(u"[affDate]")
+            elif interfaceMode_ == 1: # traits
+                text _(u"[descriptionTrait]")
+            elif interfaceMode_ == 2: # royaume des francs
+                text _(u"[strArmee]")
+            elif interfaceMode_ == 3: # économie et compétences professionnelles
+                text _(u"[strRichesse]")
+                text _(u"[strMetier]")
+            elif interfaceMode_ == 4: # Possessions
+                text _(u"[strPossessions]")
+            elif interfaceMode_ == 5: # Famille
+                text _(" Père : ")
+                hbox:
+                    add "[strAffichagePortraitPere]" size(147, 164)
+                    text _(u"[strAffichagePere]") yalign 0.5
+                text _("\n Mère : ")
+                hbox:
+                    add "[strAffichagePortraitMere]" size(147, 164)
+                    text _(u"[strAffichageMere]") yalign 0.5
+            elif interfaceMode_ == 6: # les amoureuses
+                for amoureuse in tableauAffichageAmoureuses:
+                    hbox:
+                        add "[amoureuse.adresseImgPortrait]" size(99, 110)
+                        vbox yalign 0.5:
+                            text _(u"{size=-4}{b}[amoureuse.nom_]{/b}{/size}")
+                            text _(u"{size=-8}[amoureuse.description_]{/size}")
