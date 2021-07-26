@@ -2,8 +2,12 @@ from abs.religions import religion
 from chapitres.classes import philippe
 from abs import situation
 from abs.humanite import metier
+from abs.univers import temps
 
 class SituationPhilippe(situation.Situation):
+
+    def __init__(self):
+        situation.Situation.__init__(self, 435500)
 
     def AffichageArmee(self):
         # armée de philippe

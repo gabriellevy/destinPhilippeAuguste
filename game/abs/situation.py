@@ -20,11 +20,11 @@ class Situation:
     !!!! cette classe est peut-être à surclasser pour ajouter des effets particuliers à certaines caracs (dans SetCarac par exemple)
     """
 
-    def __init__(self):
+    def __init__(self, nbJoursDate):
         self.caracs_ = dict() # dictionnaire contenant toutes les caracs courantes de la partie
         self.valsMin_ = dict() # facultatif : dictionnaire contenant l'éventuelle valeur min de la carac en clé
         self.valsMax_ = dict() # facultatif : dictionnaire contenant l'éventuelle valeur max de la carac en clé
-        date = temps.Date(175000)
+        date = temps.Date(nbJoursDate)
         self.caracs_[temps.Date.DATE] = date.nbJours_
         self.caracs_[temps.Date.AGE_ANNEES] = 0
         self.collectionTraits = None

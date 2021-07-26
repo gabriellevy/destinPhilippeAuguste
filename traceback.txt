@@ -1,26 +1,37 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/abs/humanite/naissance.rpy", line 71, in script
-    $ genererPhilippe(situation_, traits_)
-  File "game/abs/humanite/naissance.rpy", line 71, in <module>
-    $ genererPhilippe(situation_, traits_)
-NameError: name 'genererPhilippe' is not defined
+  File "game/global.rpy", line 1, in script
+    init -2 python:
+  File "game/global.rpy", line 1, in script
+    init -2 python:
+  File "game/global.rpy", line 3, in <module>
+    from spe import situation_philippe
+ImportError: No module named univers
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/abs/humanite/naissance.rpy", line 71, in script
-    $ genererPhilippe(situation_, traits_)
+  File "renpy/bootstrap.py", line 326, in bootstrap
+    renpy.main.main()
+  File "renpy/main.py", line 515, in main
+    renpy.game.context().run(node)
+  File "game/global.rpy", line 1, in script
+    init -2 python:
+  File "game/global.rpy", line 1, in script
+    init -2 python:
   File "renpy/ast.py", line 922, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "renpy/python.py", line 2218, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/abs/humanite/naissance.rpy", line 71, in <module>
-    $ genererPhilippe(situation_, traits_)
-NameError: name 'genererPhilippe' is not defined
+  File "game/global.rpy", line 3, in <module>
+    from spe import situation_philippe
+  File "renpy/loader.py", line 985, in load_module
+    exec(code, mod.__dict__)
+  File "spe/situation_philippe.py", line 5, in <module>
+ImportError: No module named univers
 
 Windows-10-10.0.19041
 Ren'Py 7.4.4.1439
 destinPhilippeAuguste 1.0
-Sun Jul 25 20:18:10 2021
+Mon Jul 26 19:54:42 2021
